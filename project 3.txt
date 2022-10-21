@@ -1,0 +1,38 @@
+Query 1: (Who is the most artists has albums)
+-------------------------------------------------------------------------------
+SELECT	A1.name as Artist , count(A2.ArtistId) "Albums"
+from Album A2
+JOIN Artist A1 
+on A2.ArtistId=A1.ArtistId 
+GROUP by A1.Name ORDER by "Albums" DESC LIMIT 10
+
+===================================================
+Query 2 : (Who are the employees who bought the music)
+--------------------------------------------------------------------------------
+SELECT (Employee.FirstName||" "|| Employee .LastName) AS Name ,
+
+sum (Invoice.total) As total 
+
+FROM Invoice  
+JOIN Employee  on Invoice.CustomerId = Employee.EmployeeId
+GROUP by Name ORDER by total DESC LIMIT 10
+
+===================================================
+Query 3 : Who is the most used mediaType
+---------------------------------------------------------------------------------
+SELECT MediaType.Name , count(Track.MediaTypeId) as	total
+FROM Track	
+INNER JOIN MediaType on Track.MediaTypeId = MediaType.MediaTypeId
+GROUP by MediaType.Name ORDER by total DESC LIMIT 3
+====================================================
+Query 4 : Who is the employee who provides the most support
+----------------------------------------------------------------------------------
+SELECT (e.FirstName ||" "|| e.LastName) as Employee ,
+count(*) as Customer
+FROM Employee e
+JOIN Customer c
+ on e.EmployeeId = c.SupportRepId
+
+GROUP by Employee 
+======================================================
+
